@@ -4,13 +4,14 @@ with open('2017 input.txt') as file:
     lines = [line.strip() for line in file]
 
 tree = defaultdict(list)
-
+weights = dict()
 names = []
 for line in lines:
     line = line.split(" ")
     name = line[0]
     names.append(name)
     weight = int(line[1][1:-1])
+    weights[name] = weight
     if len(line) > 2: #has children
         for i in range(line.index("->")+1, len(line)):
             if i != len(line)-1:
