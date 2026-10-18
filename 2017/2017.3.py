@@ -39,3 +39,4 @@ else: #not bottom corner
 print(f"Part 1: {part1}")
 
 
+#part 2 done using OEIS (https://oeis.org/A141481)
