@@ -1,4 +1,7 @@
 from collections import defaultdict
+from linecache import cache
+
+import networkx as nx
 
 with open('2017 input.txt') as file:
     lines = [line.strip() for line in file]
@@ -30,9 +33,12 @@ for name in names:
         root = name
         print(f"Part 1: {root}")
 
-def rec(root):
+
+def rec(root, goal):
     children = tree[root]
     print(root)
+    if not goal: #final root of tree
+        children_weights = []
 
 
-print(rec(root))
+print(rec(root, None))
