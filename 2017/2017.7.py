@@ -27,7 +27,12 @@ for name in tree.keys():
 
 for name in names:
     if name not in children:
-        print(f"Part 1: {name}")
+        root = name
+        print(f"Part 1: {root}")
+
+def rec(root):
+    children = tree[root]
+    print(root)
 
 
-
+print(rec(root))
