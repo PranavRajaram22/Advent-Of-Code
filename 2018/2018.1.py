@@ -8,3 +8,18 @@ for num in nums:
 
 print(f"Part 1: {eval(equation)}")
 
+s = 0
+
+seen = set()
+
+i = 0
+while True:
+    for num in nums:
+        s += int(num)
+        if s in seen:
+            print(f"Part 2: {s}")
+            exit()
+        else:
+            seen.add(s)
+
+
