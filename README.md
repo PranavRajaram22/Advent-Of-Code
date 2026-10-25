@@ -11,7 +11,7 @@ Frozen baseline (no finetuning, data augmentation, etc.)
         vasc       0.49      0.89      0.63        19
 
     accuracy                           0.69      1335
-   macro avg       0.47      0.66      0.52      1335
-weighted avg       0.79      0.69      0.72      1335
+    macro avg       0.47      0.66      0.52      1335
+    weighted avg       0.79      0.69      0.72      1335
 
 
