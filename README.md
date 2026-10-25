@@ -1,6 +1,6 @@
 Frozen baseline (no finetuning, data augmentation, etc.)
 
-              precision    recall  f1-score   support
+                  precision    recall  f1-score   support
 
        akiec           0.25      0.57      0.35        44
          bcc           0.43      0.52      0.47        69
