@@ -38,3 +38,36 @@ for dir in directions:
         x -= value
 
 print(f"Part 1: {abs(y) + abs(x)}")
+
+shipx, shipy, wayx, wayy = 0, 0, 10, 1
+
+compass = deque(['N', 'E', 'S', 'W'])
+
+for dir in directions:
+    action, value = dir[0], int(dir[1:])
+
+    if action == 'N':
+        wayy += value
+    elif action == 'S':
+        wayy -= value
+    elif action == 'E':
+        wayx += value
+    elif action == 'W':
+        wayx -= value
+
+    elif action == 'F':
+        for _ in range(value):
+            shipx += wayx
+            shipy += wayy
+
+    elif action == 'L':
+        mag = value//90
+        for _ in range(mag):
+            wayx, wayy = -wayy, wayx
+    elif action == 'R':
+        mag = value//90
+        for _ in range(mag):
+            wayx, wayy = wayy, -wayx
+
+print(f"Part 2: {abs(shipx) + abs(shipy)}")
+
