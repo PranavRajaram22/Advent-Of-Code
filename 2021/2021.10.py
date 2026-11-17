@@ -13,7 +13,10 @@ for line in lines:
         if i in ["(", "[", "{", "<"]:
             stack.append(i)
         else:
-            if (i == ')' and stack[-1] != '(') or (i == ']' and stack[-1] != '[') or (i == '}' and stack[-1] != "{") or (i == ">" and stack[-1] != "<"): #invalid:
+            if ((i == ')' and stack[-1] != '(') or
+                    (i == ']' and stack[-1] != '[') or
+                    (i == '}' and stack[-1] != "{") or
+                    (i == ">" and stack[-1] != "<")): #invalid:
                 total += scores[i]
                 isBad = True
                 break
