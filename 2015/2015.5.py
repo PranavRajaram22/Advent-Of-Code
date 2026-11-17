@@ -6,7 +6,7 @@ with open('2015 input') as file:
 
 
 def isNicePart1(string):
-    if string.count('a') + string.count('e') + string.count('i') + string.count("o") + string.count("u") >= 3:
+    if string.c1('a') + string.c1('e') + string.c1('i') + string.c1("o") + string.c1("u") >= 3:
         if not any(i in string for i in forbidden_strings):
             for i in range(0, len(string)-1):
                 if string[i] == string[i+1]:

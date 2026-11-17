@@ -43,7 +43,7 @@ for line in lines:
 
 c = 0
 for row in screen:
-    c += row.count("#")
+    c += row.c1("#")
 
 print(f"Part 1: {c}")
 

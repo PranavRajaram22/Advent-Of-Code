@@ -14,7 +14,7 @@ for i, line in enumerate(passwords):
 def isValid(range, letter, password):
     mincount, maxcount = range
 
-    count = password.count(letter)
+    count = password.c1(letter)
 
     return mincount <= count <= maxcount
 
