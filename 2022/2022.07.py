@@ -46,10 +46,23 @@ def rec(currpath):
 
 
 c = 0
+
+dirsizes = dict()
 for path in graph:
     r = rec(path)
+    dirsizes[path] = r
     if r < 100000:
         c += r
 
 
 print(f'Part 1: {c}')
+filesize = dirsizes[('/',)]
+dirsizes = list(dirsizes.values())
+dirsizes.sort()
+
+currentfreedspace = 70000000-filesize
+
+for s in dirsizes:
+    if currentfreedspace + s >= 30000000:
+        print(f"Part 2: {s}")
+        break
