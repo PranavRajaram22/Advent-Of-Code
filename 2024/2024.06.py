@@ -7,13 +7,11 @@ with open('2024 input') as file:
 x, y, = 0, 0
 guard = '^'
 for yi, row in enumerate(grid):
-    print(row)
     if '^' in row:
         y = yi
         x = row.index('^')
 
 
-print(x, y)
 pos = [(x, y)]
 while True:
     if guard == '^':
@@ -58,9 +56,9 @@ while True:
         else:
             break
 
-print(pos)
 
-print(len(set(pos)))
+
+print(f'Part 1: {len(set(pos))}')
 
 def run(grid):
     x, y, = 0, 0
@@ -129,11 +127,9 @@ def run(grid):
 c = 0
 allp = []
 for i, p in enumerate(pos[1:]):
-    if floor(i/len(pos) * 100)%10 == 0:
-        print(i/len(pos) * 100)
     g = deepcopy(grid)
     g[p[1]][p[0]] = '#'
     if run(g):
         allp.append(p)
 
-print(len(set(allp)))
+print(f"Part 2: {len(set(allp))}")
