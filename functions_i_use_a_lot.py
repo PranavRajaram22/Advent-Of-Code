@@ -1,4 +1,5 @@
-#Group by value
+from itertools import zip_longest
+
 
 def group_by_value(iterable):
     groups = []
@@ -25,6 +26,9 @@ def group_list_by_empty_line(iterable):
     groups.append(currgroup)
     return groups
 
-
-
-
+def transpose(iterable):
+    cols = list(zip_longest(*iterable))
+    c = []
+    for i in cols:
+        c.append(list(i))
+    return c
