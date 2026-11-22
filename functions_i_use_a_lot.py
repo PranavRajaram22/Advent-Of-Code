@@ -13,4 +13,18 @@ def group_by_value(iterable):
 
     return groups
 
+def group_list_by_empty_line(iterable):
+    groups = []
+    currgroup = []
+    for element in iterable:
+        if element != '':
+            currgroup.append(element)
+        else:
+            groups.append(currgroup.copy())
+            currgroup = []
+    groups.append(currgroup)
+    return groups
+
+
+
 
