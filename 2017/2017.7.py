@@ -1,5 +1,6 @@
 from collections import defaultdict
-from linecache import cache
+from functools import cache
+import statistics
 
 import networkx as nx
 
@@ -22,7 +23,7 @@ for line in lines:
             else:
                 tree[name].append(line[i])
 
-
+tree = dict(tree)
 children = []
 for name in tree.keys():
     for child in tree[name]:
@@ -33,12 +34,56 @@ for name in names:
         root = name
         print(f"Part 1: {root}")
 
+sums = dict()
 
-def rec(root, goal):
-    children = tree[root]
-    print(root)
-    if not goal: #final root of tree
+@cache
+def findSum(root):
+    try:
+        c = 0
+        c = weights[root]
+        for i in tree[root]:
+            c += findSum(i)
+
+        return c
+    except KeyError:
+        return weights[root]
+
+
+def rec(root):
+    #if it has children
+    try:
+        children = tree[root]
         children_weights = []
+        for child in children:
+            children_weights.append(findSum(child))
+        mode = statistics.mode(children_weights)
+        for i, weight in enumerate(children_weights):
+            if weight != mode:
+                return rec(children[i])
+        return root
 
 
-print(rec(root, None))
+    except KeyError:
+        return root
+
+
+
+
+unbalanced_node = rec(root)
+
+for node in tree.keys():
+    if unbalanced_node in tree[node]:
+        children = tree[node]
+        children_weights = []
+        for child in children:
+            children_weights.append(findSum(child))
+        mode = statistics.mode(children_weights)
+        newweight = mode
+        for child in tree[unbalanced_node]:
+            newweight -= findSum(child)
+        print(f"Part 2: {newweight}")
+        break
+
+
+
+
