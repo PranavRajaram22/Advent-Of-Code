@@ -51,5 +51,4 @@ while i < len(string):
         c += 1
         i += 1
 
-print(c)
-#XABCABCABCABCABCABCY -> 20
+print(f"Part 2: {c}")
