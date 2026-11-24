@@ -27,19 +27,22 @@ for y, line in enumerate(grid):
 
 print(f"Part 1: {total}")
 
-splitters = []
 
-for y, row in enumerate(grid):
-    for x, char in enumerate(row):
+beams = []
+for i in range(len(grid[0])):
+    if grid[0][i] != 'S':
+        beams.append(0)
+    else:
+        beams.append(1)
+
+
+for y in range(1, len(grid)):
+    for x, char in enumerate(grid[y]):
         if char == '^':
-            splitters.append((x, y))
+            beams[x-1] += beams[x]
+            beams[x+1] += beams[x]
+            beams[x] = 0
 
 
-print(splitters)
-
-for y, row in enumerate(grid):
-    print(row)
-    s = list(filterfalse(lambda x: x[1] != y, splitters))
-    print(s)
-    print("______")
+print(f'Part 2: {sum(beams)}')
 
