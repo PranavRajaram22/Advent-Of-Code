@@ -1,11 +1,12 @@
 from copy import deepcopy
 import networkx as nx
 import matplotlib.pyplot as plt
+from collections import defaultdict
 
 import pandas as pd
 
 with open('2024 input') as file:
-    grid = [list(line.strip()) for line in file]
+    grid:list = [list(line.strip()) for line in file]
 
 
 for y, line in enumerate(grid):
@@ -35,60 +36,44 @@ def dfs(x, y, num, visited, adj):
                     adj.append([(x, y), (xi, yi)])
 
 c = 0
-
-df = pd.DataFrame(grid)
-print(df)
-for y, line in enumerate(grid):
-    for x, char in enumerate(line):
+c2 = 0
+for y, row in enumerate(grid):
+    for x, char in enumerate(row):
+        visited = []
+        adj = []
         if char == 0:
-            visited = []
-            adj = []
             dfs(x, y, 0, visited, adj)
-            print(adj)
+
+            c += len([i for i in visited if grid[i[1]][i[0]] == 9])
+
+            graph = defaultdict(list)
+
+            for pair in adj:
+                graph[pair[0]].append(pair[1]) #graph[pointer] = pointed
+
+
+
             G = nx.DiGraph(adj)
-
-            H = deepcopy(G)
-            indegrees = dict(H.in_degree())
-            queue = []
-            order = []
-
-            for node, count in indegrees.items():
-                if count == 0:
-                    queue.append(node)
-                    H.remove_node(node)
-
-
-            while queue:
-                print(f"Nodes: {H.nodes()}")
-                print(f"Queue: {queue}")
-                print(f"Indegrees {indegrees}")
-                print("______")
-                print("")
-
-                while queue:
-                    node = queue.pop()
-                    order.append(node)
-                    if node in H.nodes():
-                        print("removing", node)
-                        H.remove_node(node)
-                indegrees = dict(H.in_degree())
-                for node, count in indegrees.items():
-                    if count == 0:
-                        queue.append(node)
-
-            print(order)
-
-
+            # only for drawing
+            '''
             pos = {n: (n[0], -n[1]) for n in G.nodes()}
-
-            nx.draw(G, pos, arrows=True, with_labels=True)
+            nx.draw(G, pos, with_labels=True)
             plt.show()
+            '''
+            #
+
+            topsort = list(nx.topological_sort(G))
+            dp = defaultdict(int)
+            dp[topsort[0]] = 1
+            for u in topsort:
+                for v in graph[u]:
+                    dp[v] += dp[u]
+            for v in topsort:
+                if grid[v[1]][v[0]] == 9:
+                    c2 += dp[v]
 
 
-            for coord in visited:
-                if grid[coord[1]][coord[0]] == 9:
-                    c += 1
 
 
 print(f'Part 1: {c}')
-
+print(f"Part 2: {c2}")
