@@ -3,7 +3,6 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from collections import defaultdict
 
-import pandas as pd
 
 with open('2024 input') as file:
     grid:list = [list(line.strip()) for line in file]
