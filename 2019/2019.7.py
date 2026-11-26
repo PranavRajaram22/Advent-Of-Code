@@ -4,8 +4,7 @@ with open('2019 input') as file:
     intcode = list(map(int, file.readline().strip().split(",")))
 
 
-def run(intcode, args):
-    i = 0
+def run(intcode, args, i):
     outputs = []
 
     while True:
@@ -186,6 +185,7 @@ sequenceperm = [0,1,2,3,4]
 
 perms = perm(sequenceperm)
 
+
 maxsignal = 0
 for sequence in perms:
     outputA = run(intcode.copy(), [sequence[0], 0])
@@ -201,4 +201,27 @@ for sequence in perms:
     maxsignal = max(maxsignal, outputE[0])
 
 print(f"Part 1: {maxsignal}")
+
+
+sequenceperm = [5, 6, 7, 8, 9]
+perms = perm(sequenceperm)
+maxsignal = 0
+
+states = dict()
+idx = dict()
+for thruster in ['A', 'B', 'C', 'D', 'E']:
+    states[thruster] = intcode
+    idx[thruster] = 0
+
+
+inputs = dict()
+
+for sequence in perms:
+    inputs['A'] = [sequence[0], 0]
+
+
+
+
+
+
 

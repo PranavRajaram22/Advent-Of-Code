@@ -70,11 +70,6 @@ def minSteps(joltages, buttons):
 
 
 
-
-
-
-
-
 for i, line in enumerate(lines):
     buttons = line[1]
     joltages = line[2]
