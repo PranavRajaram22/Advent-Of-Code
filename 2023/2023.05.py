@@ -50,7 +50,7 @@ def transfer2(seed_start, seed_length, map, i):
         seed_end = seed_start + seed_length - 1
     except IndexError:
         #case 0: i is not in range of the map. this becomes the base case. every other case eventualy hits this case.
-            return [(seed_start, seed_length)]
+        return [(seed_start, seed_length)]
 
     #case 1: ranges do not overlap at all
 
@@ -159,5 +159,5 @@ for x in seeds:
     locs.append(x[0])
 
 
-print(min(locs))
+print(f'Part 2: {min(locs)}')
 
